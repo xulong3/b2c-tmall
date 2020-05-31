@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    #数据源基本配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tmall?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: ok
+    #数据源其他配置
+    #初始化大小、最小、最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    #配置获取（指的是druid连接池的连接）连接等待超时的时间
+    maxWait: 60000
+    #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    #配置一个连接在池中最小生存时间
+    minEvictableIdleTimeMillis: 300000
+    #验证连接的sql、当空闲时验证、?、?
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    #打开 PSCache，并且指定每个连接上 PSCache 的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+mybatis:
+  type-aliases-package: com.asiainfo.group.tmall.model
+  mapper-locations: classpath:mapper/*Mapper.xml
+#开启sql日志
+logging:
+  level:
+    com.asiainfo.group.tmallcore.mapper: DEBUG

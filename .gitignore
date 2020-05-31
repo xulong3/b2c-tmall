@@ -1,3 +1,4 @@
 .idea/
 /**/target
 /tmall-api/.mvn/
+/tmall-core/.mvn/
